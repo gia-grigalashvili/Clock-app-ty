@@ -33,8 +33,28 @@ function Header() {
 
 const HeaderDiv = styled.div`
   display: flex;
-  flex-direction: column;
+
   align-items: center;
+  justify-content: center;
   padding: 20px;
+`;
+
+const Text = styled.div`
+  p {
+    color: #fff;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 183.333% */
+  }
+  h1 {
+    color: #fff;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px; /* 183.333% */
+  }
 `;
 export default Header;
