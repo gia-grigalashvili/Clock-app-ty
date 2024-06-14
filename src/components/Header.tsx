@@ -1,48 +1,62 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import refresh from "/public/assets/desktop/icon-refresh.svg";
-function Header() {
-  const [quoteData, setQuoteData] = useState("");
+
+interface Quote {
+  content: string;
+  author: string;
+}
+
+const Header: React.FC = () => {
+  const [quoteData, setQuoteData] = useState<Quote | null>(null);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch("https://api.quotable.io/random");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setQuoteData(data);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    })();
+    fetchQuote();
   }, []);
 
-  console.log(quoteData);
+  const fetchQuote = async () => {
+    try {
+      const response = await fetch("https://api.quotable.io/random");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data: Quote = await response.json();
+      setQuoteData(data);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
   return (
     <HeaderDiv>
-      <div>
-        <p>{quoteData.content}</p>
-        <h1>{quoteData.author}</h1>
-      </div>
-      <img src={refresh} alt="" />
+      <Text>
+        <p>"{quoteData?.content}"</p>
+        <h1>{quoteData?.author}</h1>
+      </Text>
+      <RefreshIcon src={refresh} alt="Refresh" onClick={fetchQuote} />
     </HeaderDiv>
   );
-}
+};
 
 const HeaderDiv = styled.div`
   display: flex;
-
-  align-items: center;
+  gap: 10px;
+  align-items: baseline;
   justify-content: center;
   padding: 20px;
+  img {
+    cursor: pointer;
+  }
 `;
 
 const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
   p {
     color: #fff;
-    font-family: Inter;
+
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -50,11 +64,16 @@ const Text = styled.div`
   }
   h1 {
     color: #fff;
-    font-family: Inter;
+
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: 22px; /* 183.333% */
   }
 `;
+
+const RefreshIcon = styled.img`
+  cursor: pointer;
+`;
+
 export default Header;

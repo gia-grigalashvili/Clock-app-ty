@@ -6,6 +6,8 @@ import Header from "./components/Header";
 // interface GlobalStyleProps {
 //   isDark: boolean;
 // }
+import More from "./components/More";
+import Clock from "./components/Clock";
 function App() {
   // const [isDark, setIsDark] = useState<boolean>(false);
 
@@ -17,6 +19,8 @@ function App() {
     <>
       {/* <GlobalStyle isDark={isDark} /> */}
       <Header></Header>
+      <Clock></Clock>
+      <More></More>
     </>
   );
 }

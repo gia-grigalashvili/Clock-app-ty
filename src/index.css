@@ -11,7 +11,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  font-family: Inter;
-  background-color: brown;
+  background-color: aquamarine;
+  background-image: url("/public/assets/mobile/bg-image-nighttime.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Inter", sans-serif;
+
+  /* Darken background photo */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/public/assets/mobile/bg-image-nighttime.jpg");
 }
