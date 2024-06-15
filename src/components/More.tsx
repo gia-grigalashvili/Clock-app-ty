@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import arrow from "/public/assets/desktop/icon-arrow-down.svg";
+import arrowdow from "/public/assets/desktop/icon-arrow-up.svg";
 interface TimeData {
   day_of_year: number;
   day_of_week: number;
@@ -14,7 +15,11 @@ interface TimeData {
 // }
 function More({ handleClick, show, isNightTime }) {
   const [timeData, setTimeData] = useState<TimeData | null>(null);
+  const [showe1, setshowe1] = useState(false);
 
+  const handleclick = () => {
+    setshowe1(!showe1);
+  };
   useEffect(() => {
     fetchQuote();
   }, []);
@@ -37,7 +42,7 @@ function More({ handleClick, show, isNightTime }) {
     <Maindiv>
       <Button onClick={handleClick}>
         <p>more</p>
-        <Secondbtn>
+        <Secondbtn onClick={handleclick}>
           <img src={arrow} alt="" />
         </Secondbtn>
       </Button>
@@ -96,6 +101,10 @@ const Secondbtn = styled.div`
   height: 32px;
   flex-shrink: 0;
   border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #292929;
 `;
 
