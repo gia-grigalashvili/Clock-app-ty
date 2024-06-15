@@ -47,6 +47,10 @@ const HeaderDiv = styled.div`
   img {
     cursor: pointer;
   }
+  @media (min-width: 1440px) {
+    justify-content: unset;
+    max-width: 400px;
+  }
 `;
 
 const Text = styled.div`
